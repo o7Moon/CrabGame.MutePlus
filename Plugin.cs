@@ -40,6 +40,7 @@ namespace MutePlus
         [HarmonyPatch(typeof(ManagePlayerListing),nameof(ManagePlayerListing.MutePlayer))]
         [HarmonyPostfix]
         public static void OnPlayerMuted(ManagePlayerListing __instance){
+            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) return;
             // this method is actually a toggle so 
             // if muted:
             if (LobbyManager.Instance.mutedPlayers[__instance.field_Private_UInt64_0]){
